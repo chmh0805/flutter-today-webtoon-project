@@ -2,33 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:today_webtoon/models/webtoon_model.dart';
 import 'package:today_webtoon/services/api_service.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  List<WebtoonModel> webtoons = [];
-  bool isLoading = true;
-
-  void waitForWebtoons() async {
-    webtoons = await ApiService.getTodaysToons();
-    isLoading = false;
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    waitForWebtoons();
-  }
+  Future<List<WebtoonModel>> webtoons = ApiService.getTodaysToons();
 
   @override
   Widget build(BuildContext context) {
-    print(webtoons);
-    print(isLoading);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -42,6 +22,18 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.w400,
           ),
         ),
+      ),
+      body: FutureBuilder(
+        builder: (context, snapshot) {
+          // snapshot: state of Future
+          if (snapshot.hasData) {
+            return const Text("There is data!");
+          } else if (snapshot.hasError) {
+            return const Text("Error !!");
+          }
+          return const Text("Data is Loading...");
+        },
+        future: webtoons,
       ),
     );
   }
