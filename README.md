@@ -1,16 +1,6 @@
-# today_webtoon
+Project what shows Naver Webtoon of today.   
+origin lecture url: https://nomadcoders.co/flutter-for-beginners #6 Webtoon App
 
-A new Flutter project.
+### 1. Add AppBar
+![image](https://user-images.githubusercontent.com/63082842/214854880-e58fd1c5-0a51-4396-aeb5-1927238fc6a2.png)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
