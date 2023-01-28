@@ -18,3 +18,6 @@ origin lecture url: https://nomadcoders.co/flutter-for-beginners #6 Webtoon App
 
 ### 6. Make Episode list in Detail Page
 ![image](https://user-images.githubusercontent.com/63082842/215284031-a36c7a57-ccfb-4fbb-950e-b4452eadce2d.png)
+
+### 7. Attach GestureDetector for opening real naver comic url
+![image](https://user-images.githubusercontent.com/63082842/215285451-bf89262f-cdbd-461a-8b29-19bfeca86376.png)
