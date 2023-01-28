@@ -9,3 +9,6 @@ origin lecture url: https://nomadcoders.co/flutter-for-beginners #6 Webtoon App
 
 ### 3. Show Webtoon Images with shadow
 ![image](https://user-images.githubusercontent.com/63082842/215257094-2b67b736-202a-4b45-ab40-dde8e9f48f68.png)
+
+### 4. Make Detail Page using GestureDetector, Navigator push
+![image](https://user-images.githubusercontent.com/63082842/215258146-58a193bd-ed23-463a-8228-b8d21963f63d.png)
