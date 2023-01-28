@@ -6,3 +6,6 @@ origin lecture url: https://nomadcoders.co/flutter-for-beginners #6 Webtoon App
 
 ### 2. Show Webtoon Items using ListView
 ![image](https://user-images.githubusercontent.com/63082842/215256112-4daa8ba1-c12b-4548-a192-3de215ce9e40.png)
+
+### 3. Show Webtoon Images with shadow
+![image](https://user-images.githubusercontent.com/63082842/215257094-2b67b736-202a-4b45-ab40-dde8e9f48f68.png)
