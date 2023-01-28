@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:today_webtoon/models/webtoon_detail_model.dart';
+import 'package:today_webtoon/models/webtoon_episode_model.dart';
+import 'package:today_webtoon/services/api_service.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
 
   const DetailScreen({
@@ -11,6 +14,21 @@ class DetailScreen extends StatelessWidget {
   });
 
   @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  late Future<WebtoonDetailModel> webtoonDetail;
+  late Future<List<WebtoonEpisodeModel>> webtoonEpisodes;
+
+  @override
+  void initState() {
+    super.initState();
+    webtoonDetail = ApiService.getToonDetailById(widget.id);
+    webtoonEpisodes = ApiService.getLatestEpisodesById(widget.id);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -19,7 +37,7 @@ class DetailScreen extends StatelessWidget {
         foregroundColor: Colors.green,
         elevation: 1,
         title: Text(
-          title,
+          widget.title,
           style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.w400,
@@ -29,15 +47,15 @@ class DetailScreen extends StatelessWidget {
       body: Column(
         children: [
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
-                tag: id,
+                tag: widget.id,
                 child: Container(
-                  width: 250,
+                  width: 200,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -49,11 +67,49 @@ class DetailScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  child: Image.network(thumb),
+                  child: Image.network(widget.thumb),
                 ),
               ),
             ],
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          FutureBuilder(
+            future: webtoonDetail,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 45.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${snapshot.data!.genre} / ${snapshot.data!.age}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        snapshot.data!.about,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              return const Text("...");
+            },
+          )
         ],
       ),
     );
