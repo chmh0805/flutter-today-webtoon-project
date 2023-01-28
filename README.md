@@ -15,3 +15,6 @@ origin lecture url: https://nomadcoders.co/flutter-for-beginners #6 Webtoon App
 
 ### 5. Add Description in Detail Page
 ![image](https://user-images.githubusercontent.com/63082842/215261269-a74a32fd-c6c6-42c7-b3c2-7d8920499dbf.png)
+
+### 6. Make Episode list in Detail Page
+![image](https://user-images.githubusercontent.com/63082842/215284031-a36c7a57-ccfb-4fbb-950e-b4452eadce2d.png)
