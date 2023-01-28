@@ -3,6 +3,7 @@ import 'package:today_webtoon/models/webtoon_detail_model.dart';
 import 'package:today_webtoon/models/webtoon_episode_model.dart';
 import 'package:today_webtoon/services/api_service.dart';
 import 'package:today_webtoon/widgets/detail_image_container_widget.dart';
+import 'package:today_webtoon/widgets/webtoon_episode_widget.dart';
 
 class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
@@ -103,46 +104,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                 return Column(
                                   children: [
                                     for (var webtoonEpisode in snapshot.data!)
-                                      Container(
-                                        clipBehavior: Clip.hardEdge,
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey.shade50,
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(
-                                              10,
-                                            ),
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                DetailImageContainer(
-                                                  imageUrl:
-                                                      webtoonEpisode.thumb,
-                                                  offset: const Offset(3, 3),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      webtoonEpisode.title,
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                      WebtoonEpisodeWidget(
+                                        webtoonEpisode: webtoonEpisode,
+                                        webtoonId: widget.id,
                                       ),
                                   ],
                                 );
