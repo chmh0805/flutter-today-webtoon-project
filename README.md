@@ -12,3 +12,6 @@ origin lecture url: https://nomadcoders.co/flutter-for-beginners #6 Webtoon App
 
 ### 4. Make Detail Page using GestureDetector, Navigator push
 ![image](https://user-images.githubusercontent.com/63082842/215258146-58a193bd-ed23-463a-8228-b8d21963f63d.png)
+
+### 5. Add Description in Detail Page
+![image](https://user-images.githubusercontent.com/63082842/215261269-a74a32fd-c6c6-42c7-b3c2-7d8920499dbf.png)
