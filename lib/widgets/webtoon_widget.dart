@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skeletons/skeletons.dart';
 import 'package:today_webtoon/screens/detail_screen.dart';
 
 class Webtoon extends StatelessWidget {
@@ -43,7 +44,20 @@ class Webtoon extends StatelessWidget {
                       color: Colors.black.withOpacity(0.5),
                     )
                   ]),
-              child: Image.network(thumb),
+              child: Image.network(
+                thumb,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(
+                    child: SkeletonItem(
+                      child: SizedBox(
+                        width: 250,
+                        height: 300,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
           Text(

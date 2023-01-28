@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text(
           "Today's toons",
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 2,
             fontWeight: FontWeight.w400,
           ),
         ),
