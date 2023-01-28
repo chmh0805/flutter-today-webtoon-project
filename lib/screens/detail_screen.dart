@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:today_webtoon/models/webtoon_detail_model.dart';
 import 'package:today_webtoon/models/webtoon_episode_model.dart';
 import 'package:today_webtoon/services/api_service.dart';
@@ -22,12 +23,46 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoonDetail;
   late Future<List<WebtoonEpisodeModel>> webtoonEpisodes;
+  late SharedPreferences preferences;
+  bool isLiked = false;
+
+  Future initPrefs() async {
+    preferences = await SharedPreferences.getInstance();
+    final likedToons = preferences.getStringList('likedToons');
+    if (likedToons == null) {
+      await preferences.setStringList('likedToons', []);
+    } else {
+      if (likedToons.contains(widget.id)) {
+        setState(() {
+          isLiked = true;
+        });
+      }
+    }
+  }
+
+  onHeartTap() async {
+    final likedToons = preferences.getStringList('likedToons');
+    if (likedToons == null) {
+    } else {
+      if (isLiked) {
+        likedToons.remove(widget.id);
+      } else {
+        likedToons.add(widget.id);
+      }
+
+      await preferences.setStringList('likedToons', likedToons);
+      setState(() {
+        isLiked = !isLiked;
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     webtoonDetail = ApiService.getToonDetailById(widget.id);
     webtoonEpisodes = ApiService.getLatestEpisodesById(widget.id);
+    initPrefs();
   }
 
   @override
@@ -38,6 +73,16 @@ class _DetailScreenState extends State<DetailScreen> {
         backgroundColor: Colors.white.withOpacity(0.8),
         foregroundColor: Colors.green,
         elevation: 1,
+        actions: [
+          IconButton(
+            onPressed: onHeartTap,
+            iconSize: 32,
+            icon: Icon(
+              color: Colors.red,
+              isLiked ? Icons.favorite : Icons.favorite_outline,
+            ),
+          ),
+        ],
         title: Text(
           widget.title,
           style: const TextStyle(
